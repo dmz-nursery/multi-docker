@@ -4,9 +4,10 @@ services:
 before_install:
   - docker build -t dmitrybunin/udemy-complex-client-test -f ./client/Dockerfile.dev ./client
 script:
+  # every script has to exit with code '0' to be considered successful
   # -- --coverage makes 'npm run test' exit (with status 0) once the test run is finished
   # istead of waiting for user input
-  - docker run -e CI=true dmitrybunin/udemy-complex-test npm run test -- --coverage 
+  - docker run dmitrybunin/udemy-complex-client-test npm run test -- --coverage
 after_success:
   - docker build -t dmitrybunin/udemy-complex-client-prod ./client
   - docker build -t dmitrybunin/udemy-complex-nginx-prod ./nginx
