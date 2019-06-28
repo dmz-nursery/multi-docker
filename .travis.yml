@@ -2,22 +2,22 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t dmitrybunin/udemy-complex-client-test -f ./client/Dockerfile.dev ./client
+  - docker build -t dmitrybunin/udemy-complex-frontend-test -f ./client/Dockerfile.dev ./client
 script:
   # every script has to exit with code '0' to be considered successful
   # -- --coverage makes 'npm run test' exit (with status 0) once the test run is finished
   # istead of waiting for user input
-  - docker run dmitrybunin/udemy-complex-client-test npm run test -- --coverage
+  - docker run dmitrybunin/udemy-complex-frontend-test npm run test -- --coverage
 after_success:
-  - docker build -t dmitrybunin/udemy-complex-client-prod ./client
-  - docker build -t dmitrybunin/udemy-complex-nginx-prod ./nginx
-  - docker build -t dmitrybunin/udemy-complex-server-prod ./server
+  - docker build -t dmitrybunin/udemy-complex-frontend-prod ./client
+  - docker build -t dmitrybunin/udemy-complex-router-prod ./nginx
+  - docker build -t dmitrybunin/udemy-complex-api-prod ./server
   - docker build -t dmitrybunin/udemy-complex-worker-prod ./worker
   # Log into Docker CLI
   # Takes input (env_var) and emmits it into
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push the above production images to DockerHub
-  - docker push dmitrybunin/udemy-complex-client-prod
-  - docker push dmitrybunin/udemy-complex-nginx-prod
-  - docker push dmitrybunin/udemy-complex-server-prod
+  - docker push dmitrybunin/udemy-complex-frontend-prod
+  - docker push dmitrybunin/udemy-complex-router-prod
+  - docker push dmitrybunin/udemy-complex-api-prod
   - docker push dmitrybunin/udemy-complex-worker-prod

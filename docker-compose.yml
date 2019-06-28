@@ -6,7 +6,7 @@ services:
   redis:
     image: redis:latest
   
-  nginx: # router
+  router: # Nginx server. routes to either the React "frontend" (another Nginx) or Express "api"
     restart: always
     build: 
       dockerfile: Dockerfile.dev
