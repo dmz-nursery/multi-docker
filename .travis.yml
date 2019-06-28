@@ -15,7 +15,7 @@ after_success:
   - docker build -t dmitrybunin/udemy-complex-worker-prod ./worker
   # Log into Docker CLI
   # Takes input (env_var) and emmits it into
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DMITRY_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push the above production images to DockerHub
   - docker push dmitrybunin/udemy-complex-client-prod
   - docker push dmitrybunin/udemy-complex-nginx-prod
