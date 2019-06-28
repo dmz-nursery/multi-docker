@@ -2,7 +2,7 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t dmitrybunin/udemy-complex-client-test -f ./client/Dockerfile.dev .
+  - docker build -t dmitrybunin/udemy-complex-client-test -f ./client/Dockerfile.dev ./client
 script:
   # -- --coverage makes 'npm run test' exit (with status 0) once the test run is finished
   # istead of waiting for user input
