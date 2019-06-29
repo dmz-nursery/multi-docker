@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "dmitrybunin/udemy-complex-frontend-prod",
+      "hostname": "frontend",
+      "essential": false
+    },
+    {
+      "name": "api",
+      "image": "dmitrybunin/udemy-complex-api-prod",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "dmitrybunin/udemy-complex-worker-prod",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "router",
+      "image": "dmitrybunin/udemy-complex-router-prod",
+      "hostname": "router",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["frontend", "api"]
+    }
+  ]
+}

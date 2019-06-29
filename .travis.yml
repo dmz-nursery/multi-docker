@@ -21,3 +21,15 @@ after_success:
   - docker push dmitrybunin/udemy-complex-router-prod
   - docker push dmitrybunin/udemy-complex-api-prod
   - docker push dmitrybunin/udemy-complex-worker-prod
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-059858048350"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
