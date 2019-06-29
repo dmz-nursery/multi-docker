@@ -5,19 +5,22 @@
       "name": "frontend",
       "image": "dmitrybunin/udemy-complex-frontend-prod",
       "hostname": "frontend",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "api",
       "image": "dmitrybunin/udemy-complex-api-prod",
       "hostname": "api",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "worker",
       "image": "dmitrybunin/udemy-complex-worker-prod",
       "hostname": "worker",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "router",
@@ -30,7 +33,8 @@
           "containerPort": 80
         }
       ],
-      "links": ["frontend", "api"]
+      "links": ["frontend", "api"],
+      "memory": 128
     }
   ]
 }
